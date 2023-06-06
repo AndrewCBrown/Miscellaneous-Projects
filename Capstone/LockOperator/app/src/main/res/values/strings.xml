@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LockOperator</string>
+    <string name="username_hint">Enter your username</string>
+    <string name="empty_string" />
+    <string name="view_log">View Log</string>
+    <string name="log_header">Log of processed requests.</string>
+    <string name="log_placeholder">Loading . . .</string>
+</resources>

@@ -1,0 +1,9 @@
+This video demonstrates the Raspberry Pi with the servo motor set up on a door.
+The device shown is only a prototype of the real locking mechanism; the final
+version would be made out of a more robust material, and it would be
+permanently fixed to the studs around the door frame for stability.
+
+In the video, the mechanism starts off in the locked position, it immediately
+unlocks, and then the video pans lower so the servo motor can be seen. From
+this angle the mechanism switches to the locked position again. The frame
+returns to the original view and the video ends.

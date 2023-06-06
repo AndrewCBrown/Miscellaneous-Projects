@@ -1,0 +1,2 @@
+lockDoor()
+unlockDoor()

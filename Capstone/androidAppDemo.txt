@@ -1,0 +1,14 @@
+This video demonstrates the Android app designed to control the locking
+mechanism.
+The video is a screen recording of a Google Pixle 2 running on Android Version
+10. The buttons on the application are not hooked up to the server, and they
+instead display a toast message at the bottom of the screen with the code that
+should be sent to the server. Also, the log file is a pre-downloaded log file
+from the Raspberry Pi. See LockOperator_android_documentation.txt for more
+details.
+
+The video starts off on the main page of the application, the username Andrew
+is entered, and the unlock button is clicked. Next, the username John is
+entered, and the lock button is clicked. Finally, the View Log button is
+clicked, and the log is scrolled through. The frame returns to the main page
+and the video ends.

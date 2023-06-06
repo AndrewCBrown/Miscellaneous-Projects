@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+<title> Lock Operator </title>
+
+<style type='text/css'>
+p {
+	font-size: 24pt;
+}
+
+.btn-img {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+}
+
+.btn-img img {
+  display: block;
+}
+
+.btn-img:hover .img-wrap {
+  background-color: black;
+}
+
+.btn-img:hover img {
+  opacity: 0.8;
+}
+
+.username_field {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 4px;
+}
+
+.centers {
+	text-align:center;
+}
+
+body {
+	background-image:url('bluebckrnd.jfif');
+	background-size: cover;
+}
+
+.image-cropper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="centers">
+	<input class="username_field" type="text" name="username" id="username" placeholder="Enter Username"><br><br>
+</div>
+
+<div class="centers">
+	<button class="btn-img">
+	<div class="image-cropper">
+	<div class="img-wrap">
+	<img src="unlock.jpg" alt="Unlock" onclick="unlock();" width="320" height="320">
+	</div>
+	</div>
+	</button>
+
+	<button class="btn-img">
+	<div class="image-cropper">
+	<div class="img-wrap">
+	<img src="lock.jpg" alt="Lock" onclick="lock();" width="320" height="320">
+	</div>
+	</div>
+	</button>
+</div>
+
+<div class="centers">
+	<p id="status_box">
+	This will show what is going on.
+	</p>
+
+	<textarea id="comment">
+	This will display the code sent to the website
+	</textarea>
+</div>
+
+<script>
+
+function generateComment(username, action){
+	var dt = new Date();
+
+	document.getElementById("status_box").innerHTML = username + " tried to " + action + " the door on " + dt.toLocaleDateString() + " at " + dt.toLocaleTimeString();
+	var year = dt.getFullYear();
+	var month = dt.getMonth() + 1;
+	var day = dt.getDate();
+	var hour = dt.getHours();
+	var min = dt.getMinutes();
+	var sec = dt.getSeconds();
+	var rTime = year + ", " + month + ", " + day + ", " + hour + ", " + min + ", " + sec;
+	var comment = "User:" + username + "; Request Time:" + rTime + "; Code:" + action + "Door();";
+	return comment;
+}
+
+function unlock()
+{
+	var username = document.getElementById("username").value;
+	
+	if (username != "") {
+		comment = generateComment(username, "unlock");
+		document.getElementById("comment").innerHTML = comment;
+		document.querySelector("#comment").focus();
+		document.querySelector("#comment").select();
+		document.execCommand('copy');
+	}
+	else {
+		document.getElementById("status_box").innerHTML = "You need to enter a username first!";
+	}
+}
+
+function lock()
+{
+	var username = document.getElementById("username").value;
+	
+	if (username != "") {
+		comment = generateComment(username, "lock");
+		document.getElementById("comment").innerHTML = comment;
+		document.querySelector("#comment").focus();
+		document.querySelector("#comment").select();
+		document.execCommand('copy');
+	}
+	else {
+		document.getElementById("status_box").innerHTML = "You need to enter a username first!";
+	}
+}
+
+//This was JavaScript intended to be sent to the comment website in the original version of the project.
+//let x = document.querySelector("body > comments-widget-app > widget-main > div > comments-compose > form > div.compose-box > div.wxa-form-group > div > div.comments-textbox-content.ng-untouched.ng-dirty.ng-valid")
+//x.innerHTML = comment;
+
+//let btn = document.querySelectorAll('.btn-primary')
+//btn.forEach(btn => btn.click())
+            
+</script>
+
+
+</body>
+
+</htlm>

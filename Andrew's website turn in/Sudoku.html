@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Edit HTML Table Selected Row</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            table td.main{
+                cursor: pointer;transition: all .25s ease-in-out;
+            }
+            table td.main:hover{background-color: #ddd;}
+			
+			td.static
+			{
+				background-color: lightblue;
+			}
+			td.mCell
+			{
+				outline: 4px solid blue; outline-offset: 42px;
+			}
+			
+			button {font-size:60px;}
+			
+			th, td{
+				text-align: center;
+				font-size:32px; /* Default Size was 16px */
+			}
+			
+			#moveLog {
+				padding: 10px;
+				width: 301px;
+				height: 400px;
+				overflow: scroll;
+				border: 2px solid #ccc;
+			}
+        </style>
+    </head>
+    <body>
+        
+		<h1 style="font-size: 50px; margin: 20px" align="center">
+		SUDOKU
+		</h1>
+		
+		<div style="float: left; margin: 0 1.5% 24px 1.5%;" id="moveLog">Your moves will appear here.</div>
+		
+        <table style="float: left; margin: 0 1.5% 24px 1.5%;" id="table" border="2">
+            
+            <tr>
+				<th>  </th>
+                <th><b>C1</b></th>
+                <th><b>C2</b></th>
+                <th><b>C3</b></th>
+				<th><b>C4</b></th>
+				<th><b>C5</b></th>
+				<th><b>C6</b></th>
+				<th><b>C7</b></th>
+				<th><b>C8</b></th>
+				<th><b>C9</b></th>
+            </tr>
+            
+            <tr>
+				<td><b>R1</b></td>
+                <td class="static main">4</td>
+                <td class="main"> </td>
+                <td class="static main">2</td>
+				<td class="static main">1</td>
+                <td class="static main">8</td>
+                <td class="main"> </td>
+				<td class="static main">5</td>
+                <td class="main"> </td>
+                <td class="static main">3</td>
+            </tr>
+            
+            <tr>
+				<td><b>R2</b></td>
+                <td class="main"> </td>
+                <td class="static mCell main">7</td>
+                <td class="main"> </td>
+				<td class="static main">3</td>
+                <td class="static mCell main">2</td>
+                <td class="main"> </td>
+				<td class="main"> </td>
+                <td class="mCell main"> </td>
+                <td class="main"> </td>
+            </tr>
+            
+            <tr>
+				<td><b>R3</b></td>
+                <td class="static main">6</td>
+                <td class="main"> </td>
+                <td class="static main">1</td>
+				<td class="main"> </td>
+                <td class="main"> </td>
+                <td class="static main">7</td>
+				<td class="main"> </td>
+                <td class="main"> </td>
+                <td class="static main">2</td>
+            </tr>
+            
+            <tr>
+				<td><b>R4</b></td>
+                <td class="static main">7</td>
+                <td class="main"> </td>
+                <td class="main"> </td>
+				<td class="main"> </td>
+                <td class="static main">4</td>
+                <td class="main"> </td>
+				<td class="static main">6</td>
+                <td class="main"> </td>
+                <td class="main"> </td>
+            </tr>
+            
+            <tr>
+				<td><b>R5</b></td>
+                <td class="main"> </td>
+                <td class="static mCell main">2</td>
+                <td class="static main">4</td>
+				<td class="main"> </td>
+                <td class="mCell main"> </td>
+                <td class="main"> </td>
+				<td class="static main">7</td>
+                <td class="static mCell main">1</td>
+                <td class="main"> </td>
+            </tr>
+			
+			<tr>
+				<td><b>R6</b></td>
+                <td class="main"> </td>
+                <td class="main"> </td>
+                <td class="static main">8</td>
+				<td class="main"> </td>
+                <td class="static main">7</td>
+                <td class="main"> </td>
+				<td class="main"> </td>
+                <td class="main"> </td>
+                <td class="static main">5</td>
+            </tr>
+			
+			<tr>
+				<td><b>R7</b></td>
+                <td class="static main">2</td>
+                <td class="main"> </td>
+                <td class="main"> </td>
+				<td class="static main">7</td>
+                <td class="main"> </td>
+                <td class="main"> </td>
+				<td class="static main">8</td>
+                <td class="main"> </td>
+                <td class="static main">1</td>
+            </tr>
+			
+			<tr>
+				<td><b>R8</b></td>
+                <td class="main"> </td>
+                <td class="mCell main"> </td>
+                <td class="main"> </td>
+				<td class="main"> </td>
+                <td class="static mCell main">9</td>
+                <td class="static main">4</td>
+				<td class="main"> </td>
+                <td class="static mCell main">6</td>
+                <td class="main"> </td>
+            </tr>
+			
+			<tr>
+				<td><b>R9</b></td>
+                <td class="static main">9</td>
+                <td class="main"> </td>
+                <td class="static main">7</td>
+				<td class="main"> </td>
+                <td class="static main">1</td>
+                <td class="static main">2</td>
+				<td class="static main">3</td>
+                <td class="main"> </td>
+                <td class="static main">4</td>
+            </tr>
+            
+        </table>
+		
+		<div style="float: left; width: 25%; margin: 0 1.5% 24px 1.5%;">
+		<p style="outline: thick solid red; font-size: 18px; height: 380px; margin: 0 0 8px 0; overflow: auto;" id="dialogBox">
+		<b>I am your information box! I give all sorts of useful information so be sure to keep an eye on me ;)</b><br>
+		To get started just click on a cell and it will appear in the black "Selected Cell" box.
+		You may then edit it by clicking one of the buttons or pressing the number on your keyboard.
+		Press "Help" to see the rules for Sudoku.
+		Click "Done" when you think you have the solution!
+		</p>
+		
+		<p style="float: bottom; margin-left: 58%;">
+		<button style="font-size: 18px;" onclick="sendHelp();">Help</button>
+		&nbsp&nbsp
+		<button style="font-size: 18px;" onclick="checkBoard();">Done</button>
+		</p>
+		</div>
+        
+		<p style="outline: thick solid black; font-size: 20px; width: 321px; margin: 0 1.5% 6px 1.5%; clear: left; float: left;" id="selectedCell">
+		Selected Cell:
+		</p>
+	
+		<p style="font-size: 20px; float: left; margin: 0 1.5% 10px 1.5%;">
+		Click one of the buttons below to change the entry in the cell that is currently selected.
+		</p>
+		
+		<p style="clear: left;" align="center">
+		<button onclick="editCell(1);">1</button>
+		&nbsp
+		<button onclick="editCell(2);">2</button>
+		&nbsp
+		<button onclick="editCell(3);">3</button>
+		&nbsp
+		<button onclick="editCell(4);">4</button>
+		&nbsp
+		<button onclick="editCell(5);">5</button>
+		&nbsp
+		<button onclick="editCell(6);">6</button>
+		&nbsp
+		<button onclick="editCell(7);">7</button>
+		&nbsp
+		<button onclick="editCell(8);">8</button>
+		&nbsp
+		<button onclick="editCell(9);">9</button>
+		</p>
+		
+		<p id="message03" hidden>
+		Hmmm, this doesn't work, check you entries again.<br>
+		If you want to see what entries might be causing problems, click 'See Contradictions'.<br>
+		<button style="font-size: 18px;" onclick="seeContradictions();">See Contradictions</button>
+		</p>
+        
+        <script> 
+            //Section of code for letting pressing the numbers on the keyboard add that value to the cell.
+			document.addEventListener("keydown", keyDownHandler);
+			function keyDownHandler(e)
+			{
+				if (e.key==9 || e.key==8 || e.key==7 || e.key==6 || e.key==5 || e.key==4 || e.key==3 || e.key==2 || e.key==1)
+				{
+					editCell(e.key);
+				}
+				else if (e.key==0)
+				{editCell(" ");}
+			}
+			
+			
+            // get selected cell
+            // display selected cell data in input
+            
+            var table = document.getElementById("table"), rIndex, cIndex;
+            
+			for(var i = 1; i < table.rows.length; i++)
+            {
+			for(var j = 1; j < 10; j++)
+			{
+                table.rows[i].cells[j].onclick = function()
+                {
+                    rIndex = this.parentNode.rowIndex;
+                    console.log(rIndex);
+					cIndex = this.cellIndex;
+					console.log(cIndex);
+					                    
+                    document.getElementById("selectedCell").innerHTML = "Selected Cell: (" + table.rows[rIndex].cells[0].innerHTML + "," + table.rows[0].cells[cIndex].innerHTML + ") &nbsp&nbsp Value: " + table.rows[rIndex].cells[cIndex].innerHTML;
+                };
+            }
+			}
+            
+			
+			//Function to check if table value is editable
+			function fluid(r, c)
+			{
+				if (table.rows[r].cells[c].className[0]=="s")
+				{return false;}
+				else
+				{return true;}
+			}
+			
+			var former;
+			var post;
+			
+			
+           // edit the cell
+            function editCell(num)
+            {
+				if (fluid(rIndex,cIndex))
+				{
+					former = table.rows[rIndex].cells[cIndex].innerHTML;
+					if (former == " ")
+					{former = "empty";}
+					table.rows[rIndex].cells[cIndex].innerHTML = num;
+					document.getElementById("selectedCell").innerHTML = "Selected Cell: (" + table.rows[rIndex].cells[0].innerHTML + "," + table.rows[0].cells[cIndex].innerHTML + ") &nbsp&nbsp Value: " + table.rows[rIndex].cells[cIndex].innerHTML;
+					//Next line of code displays the move just made in the dialog box, consider displaying this in a different element so the player could always see it...
+					if (num == 0)
+					{post = "empty";}
+					else
+					{post = table.rows[rIndex].cells[cIndex].innerHTML;}
+					document.getElementById("moveLog").innerHTML = "You changed (" + table.rows[rIndex].cells[0].innerHTML + "," + table.rows[0].cells[cIndex].innerHTML + ") from " + former + " to " + post + ".<br>" + document.getElementById("moveLog").innerHTML;
+				}
+				
+				else
+				{
+					//Send message to dialog box: You cannot edit this cell
+					document.getElementById("dialogBox").innerHTML = "You cannot edit this cell.";
+				}
+            }
+			
+			
+			//Function to send the rules to the dialog box
+			function sendHelp()
+			{
+				var rules = "Sudoku is a game where the player tries to fill an entire 9x9 grid with numbers 1-9 under some contraints. <br> A number may appear only once in its row, column, and 3x3 grid. <br> For example, since R2,C5 has a 2 in it, you cannot place a 2 anywhere in R2, C5, or the 3x3 grid spanning R1C4-R3C6. <br> The 3x3 grids within the main grid are shown by the blue borders. The light blue cells are the starting cells, these cannot be changed. <br> To change a cell's value, simply click on it, and that cell's information will appear in the black 'Selected Cell' box. You may then change the value in that cell by clicking the button for the number you want, or by pressing that number on your keyboard. <br> You can assign a cell to be empty again by selecting it and pressing '0' on your keyboard. <br> Good luck and have fun!";
+				document.getElementById("dialogBox").innerHTML = rules;
+			}
+			
+			
+			//Function to check if the board is full, returns boolean
+			function boardFull()
+			{
+				for(var i = 1; i < table.rows.length; i++)
+				{
+				for(var j = 1; j < 10; j++)
+				{
+					if (table.rows[i].cells[j].innerHTML == " ")
+					{
+					return false;
+					}
+				}
+				}
+				return true;
+			}
+			
+			
+			//Function to send the contradictions in the board to the dialog box
+			function seeContradictions()
+			{
+				var cell;
+				var contradictions = "Below is a list of cells that are equal to eachother but should not be. Keep in mind that changing just one cell could cause other cells to no longer have contradictions as well, so you may be closer than you think.<br>";
+				
+				//For loops to compare cells to other cells in their rows
+				for(var i = 1; i < table.rows.length; i++)
+				{
+				for(var j = 1; j < 10; j++)
+				{
+					cell = table.rows[i].cells[j].innerHTML;
+					for(var k = j + 1; k < 10; k++)
+					{
+						if (table.rows[i].cells[k].innerHTML == cell)
+						{contradictions += "Row Contradiction: (R" + i + ",C" + j + ") is equal to (R" + i + ",C" + k + ")<br>";}
+					}
+				}
+				}
+				
+				//For loops to compare cells to other cells in their columns
+				for(var i = 1; i < 10; i++)
+				{
+				for(var j = 1; j < table.rows.length; j++)
+				{
+					cell = table.rows[j].cells[i].innerHTML;
+					for(var k = j + 1; k < 10; k++)
+					{
+						if (table.rows[k].cells[i].innerHTML == cell)
+						{contradictions += "Column Contradiction: (R" + j + ",C" + i + ") is equal to (R" + k + ",C" + i + ")<br>";}
+					}
+				}
+				}
+				
+				//For loops to compare cells to other cells in their 3x3 grid
+				//This first block of code creates g1-9 and makes each one the list of what is currently in that 3x3 grid so that it can be compared in the second block of code
+				var g1 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				var g2 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				var g3 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				var g4 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				var g5 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				var g6 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				var g7 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				var g8 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				var g9 = [ 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				var currentGrid = 0;
+				var gridIndex;
+				for(var h = 1; h < 10; h += 3)
+				{
+				for(var k = 1; k < 10; k += 3)
+				{
+				currentGrid++;
+				gridIndex = 0;
+				for(var i = h; i < (h + 3); i++)
+				{
+				for(var j = k; j < (k + 3); j++)
+				{
+					if (currentGrid == 1)
+					{g1[gridIndex] = table.rows[i].cells[j].innerHTML;}
+					else if (currentGrid == 2)
+					{g2[gridIndex] = table.rows[i].cells[j].innerHTML;}
+					else if (currentGrid == 3)
+					{g3[gridIndex] = table.rows[i].cells[j].innerHTML;}
+					else if (currentGrid == 4)
+					{g4[gridIndex] = table.rows[i].cells[j].innerHTML;}
+					else if (currentGrid == 5)
+					{g5[gridIndex] = table.rows[i].cells[j].innerHTML;}
+					else if (currentGrid == 6)
+					{g6[gridIndex] = table.rows[i].cells[j].innerHTML;}
+					else if (currentGrid == 7)
+					{g7[gridIndex] = table.rows[i].cells[j].innerHTML;}
+					else if (currentGrid == 8)
+					{g8[gridIndex] = table.rows[i].cells[j].innerHTML;}
+					else
+					{g9[gridIndex] = table.rows[i].cells[j].innerHTML;}
+					
+					gridIndex++;
+				}}}}
+				
+				//This second block of code now goes through each cell in each grid (comparing using g1-9) and writes the contradictions
+				currentGrid = 0;
+				var p, q;
+				for(var h = 1; h < 10; h += 3)
+				{
+				for(var k = 1; k < 10; k += 3)
+				{
+				currentGrid++;
+				gridIndex = 1;
+				for(var i = h; i < (h + 3); i++)
+				{
+				for(var j = k; j < (k + 3); j++)
+				{
+					for(var n = gridIndex; n < 10; n++)
+					{
+						//These 6 if/else statements make p and q be the row and column of our n entry in g1-9
+						if (n == 0 || n == 1 || n == 2)
+						{p = h;}
+						else if (n == 3 || n == 4 || n == 5)
+						{p = h + 1;}
+						else
+						{p = h + 2;}
+						if (n == 0 || n == 3 || n == 6)
+						{q = k;}
+						else if (n == 1 || n == 4 || n == 7)
+						{q = k + 1;}
+						else
+						{q = k + 2;}
+						if (currentGrid == 1)
+						{
+							if (table.rows[i].cells[j].innerHTML == g1[n])
+							{
+								contradictions += "3x3 Grid Contradiction: (R" + i + ",C" + j + ") is equal to (R" + p + ",C" + q + ")<br>";
+							}
+						}
+						else if (currentGrid == 2)
+						{
+							if (table.rows[i].cells[j].innerHTML == g2[n])
+							{
+								contradictions += "3x3 Grid Contradiction: (R" + i + ",C" + j + ") is equal to (R" + p + ",C" + q + ")<br>";
+							}
+						}
+						else if (currentGrid == 3)
+						{
+							if (table.rows[i].cells[j].innerHTML == g3[n])
+							{
+								contradictions += "3x3 Grid Contradiction: (R" + i + ",C" + j + ") is equal to (R" + p + ",C" + q + ")<br>";
+							}
+						}
+						else if (currentGrid == 4)
+						{
+							if (table.rows[i].cells[j].innerHTML == g4[n])
+							{
+								contradictions += "3x3 Grid Contradiction: (R" + i + ",C" + j + ") is equal to (R" + p + ",C" + q + ")<br>";
+							}
+						}
+						else if (currentGrid == 5)
+						{
+							if (table.rows[i].cells[j].innerHTML == g5[n])
+							{
+								contradictions += "3x3 Grid Contradiction: (R" + i + ",C" + j + ") is equal to (R" + p + ",C" + q + ")<br>";
+							}
+						}
+						else if (currentGrid == 6)
+						{
+							if (table.rows[i].cells[j].innerHTML == g6[n])
+							{
+								contradictions += "3x3 Grid Contradiction: (R" + i + ",C" + j + ") is equal to (R" + p + ",C" + q + ")<br>";
+							}
+						}
+						else if (currentGrid == 7)
+						{
+							if (table.rows[i].cells[j].innerHTML == g7[n])
+							{
+								contradictions += "3x3 Grid Contradiction: (R" + i + ",C" + j + ") is equal to (R" + p + ",C" + q + ")<br>";
+							}
+						}
+						else if (currentGrid == 8)
+						{
+							if (table.rows[i].cells[j].innerHTML == g8[n])
+							{
+								contradictions += "3x3 Grid Contradiction: (R" + i + ",C" + j + ") is equal to (R" + p + ",C" + q + ")<br>";
+							}
+						}
+						else
+						{
+							if (table.rows[i].cells[j].innerHTML == g9[n])
+							{
+								contradictions += "3x3 Grid Contradiction: (R" + i + ",C" + j + ") is equal to (R" + p + ",C" + q + ")<br>";
+							}
+						}
+					}
+					gridIndex++;
+				}}}}				
+				
+				document.getElementById("dialogBox").innerHTML = contradictions;
+			}
+			
+			
+			//Function to check if the board is legal, returns boolean
+			function boardLegal()
+			{
+				var cell;
+								
+				//For loops to compare cells to other cells in their rows
+				for(var i = 1; i < table.rows.length; i++)
+				{
+				for(var j = 1; j < 10; j++)
+				{
+					cell = table.rows[i].cells[j].innerHTML;
+					for(var k = j + 1; k < 10; k++)
+					{
+						if (table.rows[i].cells[k].innerHTML == cell)
+						{return false;}
+					}
+				}
+				}
+				return true;
+			}
+			
+			
+			//Function to check the board
+			function checkBoard()
+			{
+				var message;
+				
+				if (boardFull() && boardLegal())
+				{
+					message = "You win, congratulations! You must be one smart cookie!";
+				}
+				else if (boardFull() && !(boardLegal()))
+				{
+					message = document.getElementById("message03").innerHTML;
+				}
+				else
+				{
+					message = "It doesn't look like you're quite done, make sure there are no empty cells left in the board.";
+				}
+				
+				document.getElementById("dialogBox").innerHTML = message;
+			}
+        </script>    
+    </body>
+</html>

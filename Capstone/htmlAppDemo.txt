@@ -1,0 +1,24 @@
+This video demonstrates the html app designed to control the locking mechanism.
+This video is a screen recording of the use of the python script running on the
+Raspberry Pi, the html application, and the website used for communication
+between the Pi and any controlling applications. Some of the intermittent steps
+shown were originally purposed to be automatic; for a full explanation see the
+capstone write up associated with this project. The website used in the video
+has some varying amount of delay when posting a comment, so the video waits
+until the comment has been posted, and then the page will be refreshed. During
+the recording, the Raspberry Pi was online and the locking mechanism was
+responding, that is how it was known when to refresh the page (The Pi responds
+quicker than the browser in nearly all cases).
+
+The video starts on the Raspberry Pi desktop. The python script that listens
+for requests is started. Then the html application is used by John to lock the
+door. The door locking code is copied to the clipboard automatically, so the
+video moves to the website and the code is posted as a comment. The page is
+eventually refreshed to show that the comment was successfully posted. Then the
+Python IDE is shown with the log message relating to John's request. Emphasis
+on the time of the request and the time it was processed, this latency is the
+sum of the time between pressing the lock button and pressing the post comment
+button and the webserver's delay. Next, Admin requests to unlock the door. The
+request is pasted into the website and commented. The page is eventually
+refreshed to show that the comment was successfully posted. Then the Python IDE
+is shown with the log message relating to Admin's request. The video ends.

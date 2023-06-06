@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+
+<head>
+<title> My Home Page </title>
+
+<style>
+body {
+  margin:0;
+  background-image: url("20160716_203342.jpg");
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  font-size: 40px;
+}
+
+li {
+  float: left;
+}
+
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn{
+  background-image: url("hover.gif");
+  background-size: cover;
+  background-color: #111;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  display: block;
+  /*This is where I would specify any differences these will have from the other nav bar items on the top*/
+}
+
+.dropdown-content a:hover {
+  /*This is where I would put a different backgrnd image*/
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  position: fixed;
+}
+
+.mySlides {
+  display:none;
+  max-height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+</style>
+</head>
+
+<!--
+Drop down (Consider animating)
+-->
+
+<body>
+<ul>
+  <li><a href="home_page.html">Home</a></li>
+  <li><a href="resume.html">Resume</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Projects</a>
+    <div class="dropdown-content">
+	  <a href="day1.html">First Page</a>
+	  <a href="826Brown.html">Beginning Page</a>
+      <a href="canvasAndrew.html">Canvas</a>
+      <a href="MNU Explore.html">MNU Explore</a>
+      <a href="Sudoku.html">Sudoku</a>
+    </div>
+  </li>
+</ul>
+
+<h1 style="margin: 110px 200px 20px 200px; text-align: center;">
+Welcome to my website! My name is Andrew Brown and I am a computer science student at MidAmerica Nazarene University.
+Click on 'Resume' to learn more about me!
+Hover over 'Projects' to see some of what I'm learning in my Web and Mobile Programming class.
+</h1>
+
+<div>
+  <img class="mySlides" src="ss1.png">
+  <img class="mySlides" src="ss2.png">
+  <img class="mySlides" src="ss3.jpg">
+  <img class="mySlides" src="ss4.png">
+  <img class="mySlides" src="ss5.jpg">
+  <img class="mySlides" src="ss6.png">
+</div>
+
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 2500); // Change image every 2.5 seconds
+}
+</script>
+
+</body>
+
+</html>
